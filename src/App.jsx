@@ -25,7 +25,7 @@ function App() {
         method: "POST",
         url: "https://openrouter.ai/api/v1/chat/completions",
         headers: {
-          "Authorization": "Bearer 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",
+          "Authorization": "Bearer YOUR_API_KEY",
           "Content-Type": "application/json"
         },
         data: {
