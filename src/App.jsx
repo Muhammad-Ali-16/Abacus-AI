@@ -19,31 +19,29 @@ function App() {
     setQuestion('')
     setAnswer('Thinking...')
 
+    const API_KEY = 'YOUR_API_KEY'
+
     try {
 
       const response = await axios({
         method: "POST",
-        url: "https://openrouter.ai/api/v1/chat/completions",
-        headers: {
-          "Authorization": "Bearer YOUR_API_KEY",
-          "Content-Type": "application/json"
-        },
+        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
         data: {
-          model: "openai/gpt-5-chat",
-          max_tokens: 1000,
-          messages: [
+          "contents": [
             {
-              role: "user",
-              content: [
-                { type: "text", text: question }
+              "parts": [
+                {
+                  "text": question
+                }
               ]
             }
           ]
         }
       })
 
-      const text = response.data.choices[0].message.content
+      const text = response.data.candidates[0].content.parts[0].text
       setAnswer(stripMarkdown(text))
+
     }
     catch (error) {
       setAnswer("Something went wrong. Please try again :(");
@@ -53,7 +51,7 @@ function App() {
 
   return (
 
-      <div className='min-h-[100vh] w-full flex items-center justify-center flex-col bg-[#1C1917] text-white'>
+    <div className='min-h-[100vh] w-full flex items-center justify-center flex-col bg-[#1C1917] text-white'>
 
       <h1 className='font-bold text-4xl max-lg:text-3xl select-none text-[#FACC15]'>
         Abacus AI
@@ -72,7 +70,7 @@ function App() {
             </p>
 
             <div className='grid lg:grid-cols-2 gap-3 max-lg:text-sm'>
-              {['💡 General knowledge','🔧 Technical questions','📝 Writing assistance','🤔 Problem solving'].map((t,i)=>(
+              {['💡 General knowledge', '🔧 Technical questions', '📝 Writing assistance', '🤔 Problem solving'].map((t, i) => (
                 <div
                   key={i}
                   className='py-3 rounded-lg text-gray-200 bg-[#292524] border border-[#3F3A36] hover:border-[#FACC15]/60 hover:shadow-[0_0_15px_rgba(250,204,21,0.25)] transition'>
@@ -96,7 +94,7 @@ function App() {
             )}
 
             {answer && (
-              <div className='self-start m-5 max-lg:my-0 max-lg:mb-5 mb-0 px-3 py-3 max-lg:text-sm rounded-r-2xl rounded-t-2xl text-gray-200 bg-[#3F3A36] border border-[#4B4743]'>
+              <div className='self-start m-5 max-lg:my-0 mb-5 max-lg:mb-5 px-3 py-3 max-lg:text-sm rounded-r-2xl rounded-t-2xl text-gray-200 bg-[#3F3A36] border border-[#4B4743]'>
                 <pre className='whitespace-pre-wrap'>{answer}</pre>
               </div>
             )}
@@ -111,7 +109,7 @@ function App() {
           placeholder='Ask Something...'
           onChange={(e) => setQuestion(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter' && question.trim()) { generateAnswer(); } }}
-          className='bg-[#1C1917] text-gray-200 placeholder:text-gray-500 border border-[#3F3A36] focus:border-[#FACC15]/70 focus:outline-none focus:ring-2 focus:ring-[#FACC15]/30 p-3 w-full m-3 rounded-xl'/>
+          className='bg-[#1C1917] text-gray-200 placeholder:text-gray-500 border border-[#3F3A36] focus:border-[#FACC15]/70 focus:outline-none focus:ring-2 focus:ring-[#FACC15]/30 p-3 w-full m-3 rounded-xl' />
 
         <button
           onClick={generateAnswer}
