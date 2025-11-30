@@ -1,12 +1,36 @@
-# React + Vite
+# Abacus-AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Abacus-AI is a chatbot application built using API integration. It allows users to interact with an AI-powered assistant through a simple, user-friendly interface.
 
-Currently, two official plugins are available:
+## Live Demo
+https://abacusai.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Chat with an AI-powered bot  
+- Real-time responses via API calls  
+- Clean and responsive interface  
+- Easy to extend and customize  
 
-## Expanding the ESLint configuration
+## How to Use
+1. Clone or download this repository:  
+   ```bash
+   git clone https://github.com/Muhammad-Ali-16/Abacus-AI.git
+   ```  
+2. Install dependencies (Node.js packages):  
+   ```bash
+   npm install
+   ```  
+3. Set up your API key in the configuration file or environment variable.  
+4. Run the application:  
+   ```bash
+   npm run dev
+   ```  
+5. Open the app in your browser or terminal (depending on your setup) and start chatting with the bot.  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Files
+- `index.html` or main frontend file — UI for chatting  
+- `app.js` or main script — handles API requests  
+- `style.css` — styling for the chat interface  
+
+## Author
+Muhammad Ali — [GitHub Profile](https://github.com/Muhammad-Ali-16)
